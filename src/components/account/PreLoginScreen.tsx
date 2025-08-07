@@ -1,12 +1,21 @@
 import LandingScreenImage from "../../assets/images/LandingScreenImage.avif";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
+
 
 const PreLoginScreen = () => {
   const navigate = useNavigate();
 
   return (
     <div className="relative h-screen w-full">
+      <button
+        className="absolute top-6 left-6 flex items-center text-gray-500 hover:text-gray-700"
+        onClick={() => window.history.back()}
+      >
+        <ChevronLeft className="w-7 h-7 me-1" />
+      </button>
+
       <img
         src={LandingScreenImage}
         alt="LandingScreenImage"

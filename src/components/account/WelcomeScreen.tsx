@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
       <img
         src={WelcomeScreenImage}
         alt="WelcomeScreenImage"
-        className="w-full object-cover"
+        className="w-full h-2/3 object-cover object-bottom"
       />
 
       <div className="text-center mt-9">
@@ -21,7 +21,6 @@ const WelcomeScreen = () => {
           Начать
         </button>
       </div>
-
     </div>
   )
 }

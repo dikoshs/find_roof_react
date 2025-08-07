@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import primaryIcon from "../../assets/images/find_roof_icon.png";
 import { Link } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,8 +11,15 @@ const Login = () => {
   {/* {error && <p className="text-center text-sm text-red-600">{error}</p>} */}
 
   return (
-    <div className="flex flex-col items-center p-8">
-      <div className="flex items-center h-80">
+    <div className="h-screen flex flex-col items-center p-8">
+      <button
+        className="absolute top-6 left-6 flex items-center text-gray-500 hover:text-gray-700"
+        onClick={() => window.history.back()}
+      >
+        <ChevronLeft className="w-7 h-7 me-1" />
+      </button>
+
+      <div className="flex items-center h-1/2">
         <img
           src={primaryIcon}
           alt="Logo"
