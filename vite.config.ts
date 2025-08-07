@@ -14,6 +14,8 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
+    host: "192.168.8.103",
+    port: 5173,
     headers: {
       'Cross-Origin-Opener-Policy': 'same-origin',
       'Cross-Origin-Embedder-Policy': 'require-corp',
