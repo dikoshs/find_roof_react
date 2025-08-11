@@ -4,7 +4,7 @@ import Footbar from '../menu/Footbar'
 const Favorite = () => {
   return (
     <div>
-      SSS
+      Favorite
       <Footbar />
     </div>
   )

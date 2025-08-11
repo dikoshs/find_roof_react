@@ -30,21 +30,21 @@ const Profile = () => {
                     <ChevronRight className="text-gray-300" />
                 </div>
                 <div className="flex justify-between border-b border-gray-300 p-6">
-                    <div className="flex">
+                    <div onClick={() => navigate('/my/data')} className="flex">
                         <Hammer className="text-[#136E65] me-2" />
                         <span className="text-gray-500 font-[700]">Мой ...</span>
                     </div>
                     <ChevronRight className="text-gray-300" />
                 </div>
                 <div className="flex justify-between border-b border-gray-300 p-6">
-                    <div className="flex">
+                    <div onClick={() => navigate('/browsing/history')} className="flex">
                         <History className="text-[#136E65] me-2" />
                         <span className="text-gray-500 font-[700]">История посещений</span>
                     </div>
                     <ChevronRight className="text-gray-300" />
                 </div>
                 <div className="flex justify-between border-b border-gray-300 p-6">
-                    <div className="flex">
+                    <div onClick={() => navigate('/payments/history')} className="flex">
                         <BriefcaseBusiness className="text-[#136E65] me-2" />
                         <span className="text-gray-500 font-[700]">История платежей</span>
                     </div>
@@ -61,7 +61,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="flex justify-between border-b border-gray-300 p-6">
-                    <div className="flex">
+                    <div onClick={() => navigate('/feedback')} className="flex">
                         <Headset className="text-[#136E65] me-2" />
                         <span className="text-gray-500 font-[700]">Обратная связь</span>
                     </div>

@@ -4,7 +4,7 @@ import Footbar from '../menu/Footbar'
 const Balance = () => {
   return (
     <div>
-      SSS
+      Balance
       <Footbar />
     </div>
   )

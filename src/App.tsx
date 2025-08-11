@@ -28,10 +28,15 @@ function App() {
         <Route path="/screen/intro" element={<IntroScreen />} />
         <Route path="/screen/welcome" element={<WelcomeScreen />} />
         <Route path="/map" element={<Map />} />
-        <Route path="/profile" element={<Main2 />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/personal" element={<Main2 />} />
+        <Route path="/legal_docs" element={<Main2 />} />
+        <Route path="/feedback" element={<Main2 />} />
+        <Route path="/payments/history" element={<Main2 />} />
+        <Route path="/browsing/history" element={<Main2 />} />
+        <Route path="/my/data" element={<Main2 />} />
         <Route path="/balance" element={<Balance />} />
         <Route path="/favorite" element={<Favorite />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
     </BrowserRouter>
   );

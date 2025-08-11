@@ -26,7 +26,6 @@ const ForgotPassword = () => {
         />
       </div>
 
-      {/* Форма с email */}
       <div className="w-full max-w-sm">
         <input
           type="email"
