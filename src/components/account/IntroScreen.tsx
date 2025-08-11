@@ -26,7 +26,7 @@ const IntroScreen = () => {
         </h2>
 
         <p className="text-center text-gray-700 mt-10">
-          <Link to="/screen/pre_login" className="text-green-700 hover:underline">
+          <Link to="/screen/pre-login" className="text-green-700 hover:underline">
             Дальше
           </Link>
         </p>

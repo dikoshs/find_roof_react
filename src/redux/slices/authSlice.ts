@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { sendPhone, verifyCode } from "../../services/authService";
+import { registerUser, loginUser } from "../../services/authService";
 
 interface AuthState {
   token: string | null;
@@ -19,15 +19,13 @@ const initialState: AuthState = {
   codeStatus: null,
 };
 
-// Асинхронный `thunk` для логина
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ code }: { code: string }, { rejectWithValue }) => {
+  async ({ email, password }: { email: string, password: string }, { rejectWithValue }) => {
     try {
-      const data = await verifyCode(code);
+      const data = await loginUser(email, password);
       const token = data.access_token;
 
-      // Сохраняем токен в localStorage
       localStorage.setItem("access_token", token);
 
       return { token };
@@ -37,13 +35,17 @@ export const login = createAsyncThunk(
   }
 );
 
-export const sendPhoneNumber = createAsyncThunk(
-  "auth/send_phone_number",
-  async ({ phoneNumber }: { phoneNumber: string }, { rejectWithValue }) => {
+export const register = createAsyncThunk(
+  "auth/register",
+  async ({ username, email, password, phoneNumber }: { username: string, email: string, password: string, phoneNumber: string }, { rejectWithValue }) => {
     try {
       const cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
-      const data = await sendPhone(cleanedPhoneNumber);
-      return { codeStatus: data.codeStatus };
+      const data = await registerUser(username, email, password, cleanedPhoneNumber);
+      const token = data.access_token;
+
+      localStorage.setItem("access_token", token);
+
+      return { token };
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || "Login failed");
     }
@@ -75,19 +77,19 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
-      .addCase(sendPhoneNumber.pending, (state) => {
+      .addCase(register.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(sendPhoneNumber.fulfilled, (state, action: PayloadAction<{ codeStatus: string }>) => {
+      .addCase(register.fulfilled, (state, action: PayloadAction<{ token: string }>) => {
         state.loading = false;
-        state.codeStatus = action.payload.codeStatus;
+        state.token = action.payload.token;
         state.isAuthenticated = true;
       })
-      .addCase(sendPhoneNumber.rejected, (state, action) => {
+      .addCase(register.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      });
+      })
   },
 });
 

@@ -53,7 +53,7 @@ const Login = () => {
 
         <div className="text-center text-sm text-gsray-700 m-7">
           Нет аккаунта?{" "}
-          <Link to="/screen/pre_login" className="text-green-700 hover:underline">
+          <Link to="/screen/pre-login" className="text-green-700 hover:underline">
             Зарегистрироваться
           </Link>
         </div>

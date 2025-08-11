@@ -11,12 +11,12 @@ interface EmailResponse {
 const AUTH_PREFIX = "/auth"
 
 export const loginUser = async (email: string, password: string): Promise<LoginResponse> => {
-  const response = await publicApi.post<LoginResponse>(`${AUTH_PREFIX}/login`, { email, password });
+  const response = await publicApi.post<LoginResponse>(`${AUTH_PREFIX}/user/login`, { email, password });
   return response.data;
 };
 
-export const registerUser = async (email: string, password: string): Promise<LoginResponse> => {
-  const response = await publicApi.post<LoginResponse>(`${AUTH_PREFIX}/register`, { email, password });
+export const registerUser = async (username: string, email: string, password: string, phoneNumber: string): Promise<LoginResponse> => {
+  const response = await publicApi.post<LoginResponse>(`${AUTH_PREFIX}/user/register`, { username, email, password, phoneNumber });
   return response.data;
 };
 
