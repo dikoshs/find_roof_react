@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Footbar from "../menu/Footbar";
 
 type Point = {
   coords: [number, number];
@@ -63,13 +64,16 @@ export default function Map() {
   }, [VITE_YANDEX_MAPS_API_KEY]);
 
   return (
-    <div
-      ref={mapRef}
-      style={{
-        width: "100%",
-        height: `${height}px`,
-        overflow: "hidden",
-      }}
-    />
+    <div>
+      <div
+        ref={mapRef}
+        style={{
+          width: "100%",
+          height: `${height}px`,
+          overflow: "hidden",
+        }}
+      />
+      <Footbar />
+    </div>
   );
 }

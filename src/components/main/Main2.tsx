@@ -1,11 +1,10 @@
-import React from 'react'
+import { MapPin, Star } from "lucide-react";
+import LandingScreenImage from "../../assets/images/LandingScreenImage.avif";
 
-const Main2 = () => {
+export default function Listings() {
   return (
     <div>
-      SSS
+      DDDDDDD
     </div>
-  )
+  );
 }
-
-export default Main2
