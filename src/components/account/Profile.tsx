@@ -1,6 +1,7 @@
 import { BriefcaseBusiness, ChevronRight, ClipboardList, Hammer, Headset, History, LogOut, Dock, UserCog } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import avatar from '../../assets/images/avatar.png';
+import ProfileImage from '../../assets/images/ProfileImage.png';
 import Footbar from "../menu/Footbar";
 
 // import BottomNavbar from "../menu/BottomNavbar";
@@ -14,7 +15,7 @@ const Profile = () => {
     return (
         <div className="flex flex-col h-screen bg-white">
             <div className="flex items-center p-6">
-                <img src={avatar} className="w-20 h-20 rounded-[13px] me-8" />
+                <img src={ProfileImage} className="w-20 h-20 rounded-[13px] me-8" />
                 <span className="text-[#136E65] font-[700] text-[24px]">
                     {/* { user?.first_name } { user?.last_name } */}
                     Adam Adam

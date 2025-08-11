@@ -1,10 +1,10 @@
-import { MapPin, Star } from "lucide-react";
-import LandingScreenImage from "../../assets/images/LandingScreenImage.avif";
+import Footbar from "../menu/Footbar";
 
 export default function Listings() {
   return (
     <div>
-      DDDDDDD
+      Main
+      <Footbar />
     </div>
   );
 }
