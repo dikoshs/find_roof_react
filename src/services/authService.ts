@@ -12,6 +12,7 @@ const AUTH_PREFIX = "/auth"
 
 export const loginUser = async (email: string, password: string): Promise<LoginResponse> => {
   const response = await publicApi.post<LoginResponse>(`${AUTH_PREFIX}/user/login`, { email, password });
+  debugger
   return response.data;
 };
 
@@ -25,9 +26,9 @@ export const verifyCode = async (code: string): Promise<LoginResponse> => {
   return response.data;
 };
 
-export const sendPhone = async (phoneEmail: string): Promise<EmailResponse> => {
+export const sendPhone = async (email: string): Promise<EmailResponse> => {
   const response = await publicApi.post<EmailResponse>(`${AUTH_PREFIX}/get_code`, { 
-    phone_email: phoneEmail 
+    email: email
   });
   return response.data;
 };

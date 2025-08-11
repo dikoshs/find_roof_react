@@ -12,6 +12,8 @@ import Balance from './components/balance/Balance';
 import Favorite from './components/account/Favorite';
 import Profile from './components/account/Profile';
 import Map from './components/map/Map';
+import ForgotPassword from './components/account/ForgotPassword';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path="/" element={<Main2 />} />
         <Route path="/main" element={<Main />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/screen/pre-login" element={<PreLoginScreen />} />
         <Route path="/screen/intro" element={<IntroScreen />} />

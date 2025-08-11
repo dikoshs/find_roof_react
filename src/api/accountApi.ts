@@ -1,9 +1,13 @@
 // services/api.ts
 import axios from "axios";
 
-const API_URL = import.meta.env.BASE_API_URL;
+const RAW = import.meta.env.VITE_API_URL as string | undefined;
 
-// 🔓 Публичный экземпляр — без токена
+if (!RAW) {
+  throw new Error("VITE_API_URL is not set. Add it to .env.local and restart Vite (npm run dev).");
+}
+const API_URL = RAW.replace(/\/+$/, "");
+
 export const publicApi = axios.create({
   baseURL: API_URL,
   headers: {

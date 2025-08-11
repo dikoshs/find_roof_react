@@ -1,97 +1,81 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { registerUser, loginUser } from "../../services/authService";
+import type { AxiosError } from "axios";
+import { loginUser, registerUser, verifyCode, sendPhone } from "../../services/authService";
 
-interface AuthState {
-  token: string | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
-  codeStatus: string | null;
+
+type Nullable<T> = T | null;
+
+export interface AuthState {
+    token: Nullable<String>;
+    isAuthenticated: boolean;
+    loading: boolean;
+    error: Nullable<string>;
 }
 
-const tokenFromStorage = localStorage.getItem("access_token");
+const initialToken = typeof localStorage !== "undefined" ? localStorage.getItem("access_token") : null;
 
 const initialState: AuthState = {
-  token: null,
-  isAuthenticated: !!tokenFromStorage,
-  loading: false,
-  error: null,
-  codeStatus: null,
-};
+    token: initialToken,
+    isAuthenticated: Boolean(initialToken),
+    loading: false,
+    error: null,
+} 
 
-export const login = createAsyncThunk(
-  "auth/login",
-  async ({ email, password }: { email: string, password: string }, { rejectWithValue }) => {
-    try {
-      const data = await loginUser(email, password);
-      const token = data.access_token;
 
-      localStorage.setItem("access_token", token);
-
-      return { token };
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || "Login failed");
+export const login = createAsyncThunk<
+    { access_token: string }, // что вернёт запрос при успехе.
+    { email: string; password: string }, // что мы передаём в dispatch(login(...)).
+    { rejectValue: string } // /что вернёт при ошибке
+>(
+    "auth/login", // уникальный идентификатор экшена (для отладки и Redux DevTools).
+    async ({email, password}, { rejectWithValue }) => {
+        try {
+            const data = await loginUser(email, password);
+            return data;
+        } catch (err) {
+            const e = err as AxiosError<{ detail?: string; message?: string}>;
+            const msg = e.response?.data?.detail || e.response?.data?.message || e.message || "Ошибка входа";
+            return rejectWithValue(msg);
+        }
     }
-  }
-);
+)
 
-export const register = createAsyncThunk(
-  "auth/register",
-  async ({ username, email, password, phoneNumber }: { username: string, email: string, password: string, phoneNumber: string }, { rejectWithValue }) => {
-    try {
-      const cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
-      const data = await registerUser(username, email, password, cleanedPhoneNumber);
-      const token = data.access_token;
-
-      localStorage.setItem("access_token", token);
-
-      return { token };
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || "Login failed");
-    }
-  }
-);
 
 const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  reducers: {
-    logout: (state) => {
-      state.token = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem("access_token");
+    name: "auth",
+    initialState,
+    reducers: {
+        logout(state) {
+            state.token = null;
+            state.isAuthenticated = false;
+            state.error = null;
+            if (typeof localStorage !== "undefined") localStorage.removeItem("access_token");
+        },
+        clearError(state) {
+            state.error = null;
+        },
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(login.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(login.fulfilled, (state, action: PayloadAction<{ token: string }>) => {
-        state.loading = false;
-        state.token = action.payload.token;
-        state.isAuthenticated = true;
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      })
-      .addCase(register.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(register.fulfilled, (state, action: PayloadAction<{ token: string }>) => {
-        state.loading = false;
-        state.token = action.payload.token;
-        state.isAuthenticated = true;
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      })
-  },
-});
+    extraReducers: (builder) => {
+      builder
+        .addCase(login.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(login.fulfilled, (state, action: PayloadAction<{access_token: string}>) => {
+            state.loading = false;
+            state.token = action.payload.access_token;
+            state.isAuthenticated = true;
+            if (typeof localStorage !== "undefined") {
+                localStorage.setItem("acccess_token", action.payload.access_token);
+            }
+        })
+        .addCase(login.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload ?? "Ошибка входа";
+        })
+    },
+})
 
-export const { logout } = authSlice.actions;
+
+export const { logout, clearError } = authSlice.actions;
 export default authSlice.reducer;
