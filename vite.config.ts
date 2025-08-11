@@ -14,7 +14,7 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    host: "192.168.8.100",
+    host: "192.168.8.103",
     // host: "192.168.1.169",
     port: 5173,
     headers: {

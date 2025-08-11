@@ -1,5 +1,5 @@
 {
-  "name": "gym_bot_app",
+  "name": "find_roof_app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.5",
+    "@react-google-maps/api": "^2.20.7",
     "@react-input/mask": "^2.0.4",
     "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/vite": "^4.0.14",
@@ -34,6 +36,7 @@
     "globals": "^15.15.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vite-plugin-mkcert": "^1.17.8"
   }
 }
