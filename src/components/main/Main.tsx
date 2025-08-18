@@ -61,7 +61,7 @@ const Main = () => {
             price: "75 000 000",
             period: "₸",
         },
-        ];
+    ];
 
     return (
         <div className="">
