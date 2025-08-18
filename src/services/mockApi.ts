@@ -1,5 +1,3 @@
-import LandingScreenImage from "../../assets/images/LandingScreenImage.avif";
-
 
 export interface FilterRequest {
   city: string;
@@ -24,7 +22,7 @@ export async function mockSearchApi(filter: FilterRequest) {
   return [
     {
             id: 1,
-            image: LandingScreenImage,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2CwdHpA7vRRjVq7FJz7KsUQM3vvE0vqcpNQ&s",
             status: "Аренда",
             rating: 4.2,
             title: "1-комнатная квартира · 45 м² · 4/9 этаж",
@@ -35,7 +33,7 @@ export async function mockSearchApi(filter: FilterRequest) {
         },
         {
             id: 2,
-            image: LandingScreenImage,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2CwdHpA7vRRjVq7FJz7KsUQM3vvE0vqcpNQ&s",
             status: "Продажа",
             rating: 4.8,
             title: "2-комнатная квартира · 65 м² · 5/12 этаж",
@@ -46,7 +44,7 @@ export async function mockSearchApi(filter: FilterRequest) {
         },
         {
             id: 3,
-            image: LandingScreenImage,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2CwdHpA7vRRjVq7FJz7KsUQM3vvE0vqcpNQ&s",
             status: "Аренда",
             rating: 4.5,
             title: "Студия · 30 м² · 2/5 этаж",
@@ -57,7 +55,7 @@ export async function mockSearchApi(filter: FilterRequest) {
         },
         {
             id: 4,
-            image: LandingScreenImage,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2CwdHpA7vRRjVq7FJz7KsUQM3vvE0vqcpNQ&s",
             status: "Аренда",
             rating: 4.0,
             title: "3-комнатная квартира · 78 м² · 7/9 этаж",
@@ -68,7 +66,7 @@ export async function mockSearchApi(filter: FilterRequest) {
         },
         {
             id: 5,
-            image: LandingScreenImage,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2CwdHpA7vRRjVq7FJz7KsUQM3vvE0vqcpNQ&s",
             status: "Продажа",
             rating: 4.9,
             title: "Пентхаус · 120 м² · 10/10 этаж",
